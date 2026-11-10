@@ -1,0 +1,44 @@
+# Runs the same checks as `node .claude/scripts/verify.mjs` locally.
+name: verify
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: mbstring, pdo_sqlite, sqlite3, bcmath, intl
+          coverage: none
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: composer install --no-interaction --prefer-dist --no-progress
+      - name: Prepare environment
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+          touch database/database.sqlite
+        env:
+          DB_CONNECTION: sqlite
+      - run: npm ci
+      - name: Install Playwright browser
+        if: hashFiles('playwright.config.ts') != ''
+        run: npx playwright install --with-deps chromium
+      - name: Verify
+        run: node .claude/scripts/verify.mjs
+        env:
+          CI: "true"
+          DB_CONNECTION: sqlite
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

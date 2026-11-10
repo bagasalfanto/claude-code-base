@@ -1,0 +1,7 @@
+# CLAUDE.local.md (personal, not committed)
+
+Copy this file to `CLAUDE.local.md` for notes only you need. It is in `.gitignore`.
+
+- Local URLs: app http://localhost:3000 · DB studio http://localhost:54323
+- My test account: use the seeded user (see docs/database.md); never real credentials here.
+- Preferences: answer me in Indonesian; code, comments and commit messages in English.

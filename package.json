@@ -1,0 +1,39 @@
+{
+  "name": "claude-code-base",
+  "version": "1.0.0",
+  "description": "Claude Code base kit for Next.js and Laravel projects: enforcement hooks + bridge skills around Matt Pocock's skills.",
+  "keywords": [
+    "claude-code",
+    "claude",
+    "ai-agents",
+    "skills",
+    "nextjs",
+    "laravel",
+    "hooks"
+  ],
+  "homepage": "https://github.com/bagasalfanto/claude-code-base#readme",
+  "bugs": {
+    "url": "https://github.com/bagasalfanto/claude-code-base/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bagasalfanto/claude-code-base.git"
+  },
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "claude-code-base": "bin/init.mjs"
+  },
+  "files": [
+    "bin",
+    "template",
+    "stacks"
+  ],
+  "scripts": {
+    "test": "node --test template/_claude/hooks/test/hooks.test.mjs",
+    "smoke": "node test/smoke.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

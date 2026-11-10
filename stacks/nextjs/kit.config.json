@@ -1,0 +1,79 @@
+{
+  "stack": "nextjs",
+  "protected": [
+    "package-lock.json",
+    "pnpm-lock.yaml",
+    "yarn.lock",
+    "bun.lock",
+    "bun.lockb",
+    ".next/**",
+    "next-env.d.ts",
+    "**/database.types.ts",
+    "supabase/.temp/**",
+    "supabase/.branches/**"
+  ],
+  "migrationGlobs": [
+    "supabase/migrations/**",
+    "drizzle/**/*.sql",
+    "drizzle/meta/**",
+    "prisma/migrations/**"
+  ],
+  "uiGlobs": [
+    "{src/,}app/**/*.{tsx,jsx,css}",
+    "{src/,}components/**",
+    "{src/,}hooks/**",
+    "{src/,}styles/**",
+    "public/**"
+  ],
+  "verify": [
+    {
+      "name": "lint",
+      "run": "npm run lint",
+      "when": "script:lint"
+    },
+    {
+      "name": "typecheck",
+      "run": "npx tsc --noEmit",
+      "when": "file:tsconfig.json"
+    },
+    {
+      "name": "unit",
+      "run": "npm test",
+      "when": "script:test"
+    },
+    {
+      "name": "build",
+      "run": "npm run build",
+      "when": "script:build",
+      "full": true,
+      "timeoutSec": 900
+    },
+    {
+      "name": "e2e",
+      "run": "npx playwright test",
+      "when": "file:playwright.config.ts&file:node_modules/@playwright/test",
+      "full": true,
+      "timeoutSec": 1200
+    }
+  ],
+  "dbCommands": {
+    "supabase": {
+      "status": "npx supabase status",
+      "reset": "npx supabase db reset",
+      "seed": "npx supabase db reset",
+      "note": "Supabase local: db reset re-applies migrations and supabase/seed.sql."
+    },
+    "mysql": {
+      "seed": "npm run db:seed",
+      "note": "Add a db:reset script (drop + migrate + seed against the LOCAL database) to package.json, then set kit.config.json -> db.reset to \"npm run db:reset\"."
+    },
+    "turso": {
+      "seed": "npm run db:seed",
+      "note": "Local libSQL file: add a db:reset script (delete local.db, migrate, seed) and set db.reset to \"npm run db:reset\"."
+    },
+    "firebase": {
+      "seed": "npm run db:seed",
+      "note": "Firestore emulator: restart the emulator to reset; db:seed must refuse to run without FIRESTORE_EMULATOR_HOST."
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(pnpm run *)",
+      "Bash(npx tsc *)",
+      "Bash(npx next lint *)",
+      "Bash(npx vitest *)",
+      "Bash(npx supabase gen types *)",
+      "Bash(npx supabase status)",
+      "Bash(npx drizzle-kit generate *)",
+      "Bash(npx drizzle-kit check *)",
+      "PowerShell(npm run *)",
+      "PowerShell(pnpm run *)",
+      "PowerShell(npx tsc *)",
+      "PowerShell(npx next lint *)",
+      "PowerShell(npx vitest *)",
+      "PowerShell(npx supabase gen types *)",
+      "PowerShell(npx supabase status)",
+      "PowerShell(npx drizzle-kit generate *)",
+      "PowerShell(npx drizzle-kit check *)"
+    ],
+    "ask": [
+      "Bash(npx supabase db *)",
+      "Bash(npx supabase migration *)",
+      "Bash(npx drizzle-kit push *)",
+      "Bash(npx drizzle-kit migrate *)",
+      "Bash(firebase *)",
+      "Bash(turso *)",
+      "PowerShell(npx supabase db *)",
+      "PowerShell(npx supabase migration *)",
+      "PowerShell(npx drizzle-kit push *)",
+      "PowerShell(npx drizzle-kit migrate *)",
+      "PowerShell(firebase *)",
+      "PowerShell(turso *)"
+    ],
+    "deny": []
+  }
+}

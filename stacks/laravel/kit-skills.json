@@ -1,0 +1,19 @@
+{
+  "sources": [
+    {
+      "source": "laravel/boost",
+      "required": false,
+      "skills": [
+        "laravel-best-practices",
+        "tailwindcss-development"
+      ]
+    },
+    {
+      "source": "vercel-labs/agent-skills",
+      "required": false,
+      "skills": [
+        "web-design-guidelines"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "$comment": "Kit config for hooks & scripts. Base values; the stack overlay is merged in by bin/init.mjs and /kit-setup fills in the rest. gitignore-style globs: '!' = exception, {a,b} = alternatives.",
+  "stack": "none",
+  "database": "not-selected",
+  "packageManager": "npm",
+  "enforce": true,
+  "strictInBypass": true,
+  "maxTestRounds": 3,
+  "requireUiTests": true,
+  "uiTestSteps": [
+    "e2e"
+  ],
+  "alwaysEditable": [
+    ".scratch/**",
+    "GLOSSARY.md",
+    "GLOSSARY-MAP.md",
+    "**/GLOSSARY.md",
+    "docs/adr/**",
+    "**/docs/adr/**",
+    "docs/agents/**",
+    "CODING_STANDARDS.md",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "CLAUDE.local.md",
+    "docs/notes/**",
+    "CONTEXT.md",
+    "CONTEXT-MAP.md",
+    "**/CONTEXT.md"
+  ],
+  "nonCode": [
+    "*.md",
+    "docs/**",
+    ".scratch/**"
+  ],
+  "protected": [
+    ".env",
+    ".env.*",
+    "!.env.example",
+    ".claude/state/**",
+    ".git/**",
+    "node_modules/**"
+  ],
+  "migrationGlobs": [],
+  "uiGlobs": [],
+  "agentPaths": {
+    "ui-tester": [
+      "tests/e2e/**",
+      "playwright.config.ts"
+    ],
+    "button-tester": [
+      "tests/e2e/**"
+    ]
+  },
+  "verify": [],
+  "dbCommands": {},
+  "db": {},
+  "bashGuard": {
+    "deny": [],
+    "ask": []
+  }
+}

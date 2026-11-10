@@ -1,0 +1,12 @@
+{
+  "sources": [
+    {
+      "source": "vercel-labs/agent-skills",
+      "required": false,
+      "skills": [
+        "vercel-react-best-practices",
+        "web-design-guidelines"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "defaultMode": "default",
+    "allow": [
+      "Bash(node .claude/scripts/verify.mjs *)",
+      "Bash(node .claude/scripts/verify.mjs)",
+      "Bash(node .claude/scripts/scope.mjs status)",
+      "Bash(node .claude/scripts/scope.mjs list)",
+      "Bash(node .claude/scripts/scope.mjs propose *)",
+      "Bash(node .claude/scripts/scope.mjs propose)",
+      "Bash(node .claude/scripts/scope.mjs done)",
+      "Bash(node .claude/scripts/setup.mjs *)",
+      "Bash(node .claude/scripts/setup.mjs)",
+      "Bash(node .claude/scripts/skills.mjs list)",
+      "Bash(node .claude/scripts/skills.mjs print)",
+      "Bash(node .claude/scripts/db.mjs status)",
+      "Bash(node --test *)",
+      "Bash(git status *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git diff)",
+      "Bash(git log *)",
+      "Bash(git log)",
+      "Bash(git show *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git rev-parse *)",
+      "Bash(git branch *)",
+      "Bash(npx playwright *)",
+      "Bash(playwright-cli *)",
+      "PowerShell(node .claude/scripts/verify.mjs *)",
+      "PowerShell(node .claude/scripts/verify.mjs)",
+      "PowerShell(node .claude/scripts/scope.mjs status)",
+      "PowerShell(node .claude/scripts/scope.mjs list)",
+      "PowerShell(node .claude/scripts/scope.mjs propose *)",
+      "PowerShell(node .claude/scripts/scope.mjs propose)",
+      "PowerShell(node .claude/scripts/scope.mjs done)",
+      "PowerShell(node .claude/scripts/setup.mjs *)",
+      "PowerShell(node .claude/scripts/setup.mjs)",
+      "PowerShell(node .claude/scripts/skills.mjs list)",
+      "PowerShell(node .claude/scripts/skills.mjs print)",
+      "PowerShell(node .claude/scripts/db.mjs status)",
+      "PowerShell(node --test *)",
+      "PowerShell(git status *)",
+      "PowerShell(git status)",
+      "PowerShell(git diff *)",
+      "PowerShell(git diff)",
+      "PowerShell(git log *)",
+      "PowerShell(git log)",
+      "PowerShell(git show *)",
+      "PowerShell(git add *)",
+      "PowerShell(git commit *)",
+      "PowerShell(git rev-parse *)",
+      "PowerShell(git branch *)",
+      "PowerShell(npx playwright *)",
+      "PowerShell(playwright-cli *)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(node .claude/scripts/db.mjs reset)",
+      "Bash(node .claude/scripts/db.mjs seed)",
+      "Bash(node .claude/scripts/skills.mjs install *)",
+      "Bash(npm install *)",
+      "Bash(npm i *)",
+      "Bash(pnpm add *)",
+      "PowerShell(git push *)",
+      "PowerShell(node .claude/scripts/db.mjs reset)",
+      "PowerShell(node .claude/scripts/db.mjs seed)",
+      "PowerShell(node .claude/scripts/skills.mjs install *)",
+      "PowerShell(npm install *)",
+      "PowerShell(npm i *)",
+      "PowerShell(pnpm add *)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Edit(.env)",
+      "Edit(.env.*)",
+      "Edit(.claude/state/**)",
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git reset --hard *)",
+      "Bash(npm publish *)",
+      "PowerShell(git push --force *)",
+      "PowerShell(git push -f *)",
+      "PowerShell(git reset --hard *)",
+      "PowerShell(npm publish *)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/session-start.mjs\"",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/prompt-gate.mjs\"",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/scope-guard.mjs\"",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/bash-guard.mjs\"",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/track-edits.mjs\"",
+            "timeout": 15
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"${CLAUDE_PROJECT_DIR}/.claude/hooks/stop-gate.mjs\"",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}

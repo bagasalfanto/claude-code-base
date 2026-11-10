@@ -1,0 +1,26 @@
+{
+  "$comment": "Pages tested by all-buttons.spec.ts. The button-tester agent adds a route for every new page. storageState: optional login state (tests/e2e/.auth/). skipText matches button labels in English and Indonesian. axe: true adds an accessibility check (needs @axe-core/playwright; toggle with node .claude/scripts/setup.mjs axe on).",
+  "routes": [
+    {
+      "path": "/",
+      "name": "home"
+    }
+  ],
+  "skipText": [
+    "delete",
+    "remove",
+    "logout",
+    "log out",
+    "sign out",
+    "pay",
+    "checkout",
+    "hapus",
+    "keluar",
+    "bayar"
+  ],
+  "ignoreConsole": [
+    "Download the React DevTools"
+  ],
+  "maxClicksPerPage": 40,
+  "axe": false
+}

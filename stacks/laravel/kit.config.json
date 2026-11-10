@@ -1,0 +1,82 @@
+{
+  "stack": "laravel",
+  "frontend": "not-selected",
+  "protected": [
+    "composer.lock",
+    "package-lock.json",
+    "pnpm-lock.yaml",
+    "yarn.lock",
+    "bun.lock",
+    "vendor/**",
+    "bootstrap/cache/**",
+    "storage/framework/**",
+    "storage/logs/**",
+    "public/build/**",
+    "public/hot"
+  ],
+  "migrationGlobs": [
+    "database/migrations/**",
+    "supabase/migrations/**"
+  ],
+  "uiGlobs": [
+    "resources/views/**",
+    "resources/js/**",
+    "resources/css/**",
+    "app/Livewire/**",
+    "app/View/**"
+  ],
+  "verify": [
+    {
+      "name": "pint",
+      "run": "php vendor/bin/pint --test",
+      "when": "file:vendor/bin/pint"
+    },
+    {
+      "name": "phpstan",
+      "run": "php vendor/bin/phpstan analyse --no-progress --memory-limit=1G",
+      "when": "file:vendor/bin/phpstan"
+    },
+    {
+      "name": "test",
+      "run": "php artisan test",
+      "when": "file:artisan"
+    },
+    {
+      "name": "frontend-build",
+      "run": "npm run build",
+      "when": "script:build",
+      "full": true,
+      "timeoutSec": 600
+    },
+    {
+      "name": "e2e",
+      "run": "npx playwright test",
+      "when": "file:playwright.config.ts&file:node_modules/@playwright/test",
+      "full": true,
+      "timeoutSec": 1200
+    }
+  ],
+  "dbCommands": {
+    "mysql": {
+      "status": "php artisan migrate:status",
+      "reset": "php artisan migrate:fresh --seed",
+      "seed": "php artisan db:seed"
+    },
+    "supabase": {
+      "status": "php artisan migrate:status",
+      "reset": "php artisan migrate:fresh --seed",
+      "seed": "php artisan db:seed",
+      "note": "Only against local Supabase or a dev project."
+    },
+    "turso": {
+      "status": "php artisan migrate:status",
+      "reset": "php artisan migrate:fresh --seed",
+      "seed": "php artisan db:seed",
+      "note": "Local SQLite file."
+    },
+    "firebase": {
+      "seed": "php artisan db:seed",
+      "note": "Firestore emulator: restart it to reset."
+    }
+  }
+}

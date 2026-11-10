@@ -1,0 +1,50 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(php artisan test *)",
+      "Bash(php artisan route:list *)",
+      "Bash(php artisan make*)",
+      "Bash(php artisan about *)",
+      "Bash(php artisan db:show *)",
+      "Bash(php artisan db:table *)",
+      "Bash(php artisan migrate:status *)",
+      "Bash(php vendor/bin/pint *)",
+      "Bash(php vendor/bin/phpstan *)",
+      "Bash(php vendor/bin/pest *)",
+      "Bash(php vendor/bin/phpunit *)",
+      "Bash(composer dump-autoload *)",
+      "Bash(npm run *)",
+      "PowerShell(php artisan test *)",
+      "PowerShell(php artisan route:list *)",
+      "PowerShell(php artisan make*)",
+      "PowerShell(php artisan about *)",
+      "PowerShell(php artisan db:show *)",
+      "PowerShell(php artisan db:table *)",
+      "PowerShell(php artisan migrate:status *)",
+      "PowerShell(php vendor/bin/pint *)",
+      "PowerShell(php vendor/bin/phpstan *)",
+      "PowerShell(php vendor/bin/pest *)",
+      "PowerShell(php vendor/bin/phpunit *)",
+      "PowerShell(composer dump-autoload *)",
+      "PowerShell(npm run *)"
+    ],
+    "ask": [
+      "Bash(php artisan migrate *)",
+      "Bash(php artisan db:seed *)",
+      "Bash(php artisan tinker *)",
+      "Bash(composer require *)",
+      "Bash(composer remove *)",
+      "Bash(composer update *)",
+      "PowerShell(php artisan migrate *)",
+      "PowerShell(php artisan db:seed *)",
+      "PowerShell(php artisan tinker *)",
+      "PowerShell(composer require *)",
+      "PowerShell(composer remove *)",
+      "PowerShell(composer update *)"
+    ],
+    "deny": [
+      "Bash(php artisan db:wipe *)",
+      "PowerShell(php artisan db:wipe *)"
+    ]
+  }
+}

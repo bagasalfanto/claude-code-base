@@ -1,0 +1,33 @@
+# Runs the same checks as `node .claude/scripts/verify.mjs` locally.
+name: verify
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      # Using pnpm/yarn/bun? Replace the install step (and the cache key above).
+      - run: npm ci
+      - name: Install Playwright browser
+        if: hashFiles('playwright.config.ts') != ''
+        run: npx playwright install --with-deps chromium
+      - name: Verify
+        run: node .claude/scripts/verify.mjs
+        env:
+          CI: "true"
+          # Add the env vars your build/tests need as repository secrets, e.g.:
+          # NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7

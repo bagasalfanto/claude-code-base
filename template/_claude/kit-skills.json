@@ -1,0 +1,49 @@
+{
+  "$comment": "Third-party skills the kit is built around. Installed into .claude/skills with the skills.sh CLI (node .claude/scripts/skills.mjs install). Not bundled in this repo.",
+  "sources": [
+    {
+      "source": "mattpocock/skills",
+      "required": true,
+      "skills": [
+        "setup-matt-pocock-skills",
+        "grill-with-docs",
+        "grilling",
+        "domain-modeling",
+        "codebase-design",
+        "to-spec",
+        "to-tickets",
+        "implement",
+        "tdd",
+        "diagnosing-bugs",
+        "code-review",
+        "retro",
+        "writing-for-agents",
+        "grill-me",
+        "handoff",
+        "wait-what",
+        "pr"
+      ]
+    },
+    {
+      "source": "obra/superpowers",
+      "required": false,
+      "skills": [
+        "verification-before-completion"
+      ]
+    },
+    {
+      "source": "anthropics/skills",
+      "required": false,
+      "skills": [
+        "frontend-design"
+      ]
+    },
+    {
+      "source": "microsoft/playwright-cli",
+      "required": false,
+      "skills": [
+        "playwright-cli"
+      ]
+    }
+  ]
+}
